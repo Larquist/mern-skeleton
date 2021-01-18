@@ -6,17 +6,19 @@ import cors from 'cors'
 import helmet from 'helmet'
 import Template from './../template'
 import userRoutes from './routes/userRoutes'
+import authRoutes from './routes/auth.routes'
 
-const app = express()
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cookieParser())
-app.use(compress())
-app.use(helmet())
-app.use(cors())
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(compress());
+app.use(helmet());
+app.use(cors());
 app.get('/', (req, res) => {
     res.status(200).send(Template())
-})
-app.use('/', userRoutes)
+});
+app.use('/', userRoutes);
+app.use('/', authRoutes);
 
-export default app
+export default app;
